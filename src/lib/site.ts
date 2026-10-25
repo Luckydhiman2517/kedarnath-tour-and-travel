@@ -241,6 +241,65 @@ export const categories = [
   "India Tour",
 ] as const;
 
+export type Vehicle = {
+  slug: string;
+  name: string;
+  maker: string;
+  type: string;
+  seats: string;
+  luggage: string;
+  bestFor: string;
+  image: string;
+  /** Photo credit — required by the licence, or undefined for public domain. */
+  credit?: { author: string; licence: string; href: string; modified?: boolean };
+  badge?: string;
+  features: string[];
+};
+
+/* Per-day rates follow the official rate card — share your dates for a quote. */
+export const vehicles: Vehicle[] = [
+  {
+    slug: "maruti-suzuki-ertiga",
+    name: "Ertiga",
+    maker: "Maruti Suzuki",
+    type: "7-seater MPV",
+    seats: "6 + 1 (driver)",
+    luggage: "3 large bags",
+    bestFor: "Small families and couples on Do Dham or Ek Dham trips",
+    image: "/images/vehicles/ertiga.jpg",
+    badge: "Most economical",
+    features: [
+      "Fully air-conditioned cabin",
+      "Light and nimble on narrow hill roads",
+      "Push-back seats with good legroom",
+      "Roof carrier for extra luggage",
+    ],
+  },
+  {
+    slug: "toyota-innova-crysta",
+    name: "Innova Crysta",
+    maker: "Toyota",
+    type: "7-seater premium MPV",
+    seats: "6 + 1 (driver)",
+    luggage: "4 – 5 large bags",
+    bestFor: "Full Char Dham circuits, senior citizens and longer drives",
+    image: "/images/vehicles/innova-crysta-v2.jpg",
+    credit: {
+      author: "Premnath Kudva",
+      licence: "CC BY-SA 4.0",
+      href: "https://commons.wikimedia.org/wiki/File:Toyota_Innova_Crysta_2.4_Z_front_right.jpg",
+      modified: true,
+    },
+    badge: "Most requested",
+    features: [
+      "Captain seats with extra legroom",
+      "The smoothest ride on long mountain stretches",
+      "Powerful climb on steep gradients",
+      "Preferred by families travelling with elders",
+    ],
+  },
+];
+
 export type Service = { title: string; desc: string; icon: string };
 
 export const services: Service[] = [

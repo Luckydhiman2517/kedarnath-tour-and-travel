@@ -56,11 +56,21 @@ export function CarSvg({
   );
 }
 
-function Wheel({ cx, cy, spin }: { cx: number; cy: number; spin: boolean }) {
+export function Wheel({
+  cx,
+  cy,
+  spin,
+  r = 17,
+}: {
+  cx: number;
+  cy: number;
+  spin: boolean;
+  r?: number;
+}) {
   return (
     <g>
-      <circle cx={cx} cy={cy} r="17" fill="#0a1130" />
-      <circle cx={cx} cy={cy} r="9.5" fill="#cbd5e1" />
+      <circle cx={cx} cy={cy} r={r} fill="#0a1130" />
+      <circle cx={cx} cy={cy} r={r * 0.56} fill="#cbd5e1" />
       <motion.g
         style={{ originX: `${cx}px`, originY: `${cy}px` }}
         animate={spin ? { rotate: 360 } : undefined}
@@ -87,7 +97,7 @@ function Wheel({ cx, cy, spin }: { cx: number; cy: number; spin: boolean }) {
           transform={`rotate(45 ${cx} ${cy})`}
         />
       </motion.g>
-      <circle cx={cx} cy={cy} r="3" fill="#ff8012" />
+      <circle cx={cx} cy={cy} r={r * 0.18} fill="#ff8012" />
     </g>
   );
 }

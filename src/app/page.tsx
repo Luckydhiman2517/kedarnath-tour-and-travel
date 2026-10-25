@@ -6,6 +6,7 @@ import { Stats } from "@/components/Stats";
 import { Inclusions } from "@/components/Inclusions";
 import { FeaturedPackages } from "@/components/FeaturedPackages";
 import { RoadDivider } from "@/components/RoadDivider";
+import { Fleet } from "@/components/Fleet";
 import { WhyUs } from "@/components/WhyUs";
 import { Services } from "@/components/Services";
 import { GalleryGrid } from "@/components/GalleryGrid";
@@ -27,6 +28,7 @@ export default function Home() {
       <Inclusions />
       <FeaturedPackages />
       <RoadDivider />
+      <Fleet />
       <WhyUs />
       <Services />
 
