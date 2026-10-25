@@ -1,26 +1,145 @@
 @import "tailwindcss";
 
+@theme {
+  --color-navy-50: #eef2fb;
+  --color-navy-100: #d8e1f6;
+  --color-navy-200: #b2c3ea;
+  --color-navy-300: #7f98d8;
+  --color-navy-400: #4e6ac0;
+  --color-navy-500: #2f4aa3;
+  --color-navy-600: #233a85;
+  --color-navy-700: #1b2d6b;
+  --color-navy-800: #16255a;
+  --color-navy-900: #111c45;
+  --color-navy-950: #0a1130;
+
+  --color-saffron-50: #fff8ed;
+  --color-saffron-100: #ffefd4;
+  --color-saffron-200: #ffdba8;
+  --color-saffron-300: #ffc071;
+  --color-saffron-400: #ff9d38;
+  --color-saffron-500: #ff8012;
+  --color-saffron-600: #f06207;
+  --color-saffron-700: #c74808;
+  --color-saffron-800: #9e390f;
+  --color-saffron-900: #7f3110;
+
+  --font-display: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+
+  --animate-marquee: marquee 38s linear infinite;
+  --animate-marquee-slow: marquee 60s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-slow: float 9s ease-in-out infinite;
+  --animate-drive: drive 16s linear infinite;
+  --animate-drive-slow: drive 26s linear infinite;
+  --animate-dash: dash 1.2s linear infinite;
+  --animate-shimmer: shimmer 2.6s linear infinite;
+  --animate-kenburns: kenburns 18s ease-in-out infinite alternate;
+  --animate-spin-slow: spin 14s linear infinite;
+  --animate-pulse-ring: pulse-ring 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-bob: bob 2.2s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+@keyframes drive {
+  0% { transform: translateX(-18vw) }
+  100% { transform: translateX(118vw) }
+}
+@keyframes dash {
+  to { background-position-x: -80px; }
+}
+@keyframes shimmer {
+  0% { transform: translateX(-120%) skewX(-18deg); }
+  100% { transform: translateX(240%) skewX(-18deg); }
+}
+@keyframes kenburns {
+  0% { transform: scale(1.04) translate3d(0, 0, 0); }
+  100% { transform: scale(1.18) translate3d(-1.5%, -1.5%, 0); }
+}
+@keyframes pulse-ring {
+  0% { transform: scale(0.9); opacity: 0.75; }
+  70% { transform: scale(1.7); opacity: 0; }
+  100% { transform: scale(1.7); opacity: 0; }
+}
+@keyframes bob {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-3px) rotate(-1.2deg); }
+  75% { transform: translateY(3px) rotate(1.2deg); }
+}
+
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #111827;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .text-pretty { text-wrap: pretty; }
+
+  .brand-gradient {
+    background-image: linear-gradient(120deg, #1b2d6b 0%, #2f4aa3 45%, #ff8012 100%);
+  }
+  .gold-text {
+    background-image: linear-gradient(95deg, #ffc071 0%, #ff8012 45%, #ffd79a 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .glass {
+    background: color-mix(in srgb, white 10%, transparent);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+  .road-dashes {
+    background-image: repeating-linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.85) 0 34px,
+      transparent 34px 80px
+    );
+    animation: var(--animate-dash);
+  }
+  .mask-fade-x {
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+}
+
+::selection {
+  background: #ff8012;
+  color: #fff;
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #eef2fb; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#2f4aa3, #1b2d6b);
+  border-radius: 999px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
